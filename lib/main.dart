@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_shazam/screens/home.dart';
 import 'package:food_shazam/screens/landing.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MainApp extends StatelessWidget {
       title: 'Food Shazam',
       home: Scaffold(
         body: Center(
-            child: Landing(),
+            child: HomeScreen(),
         ),
         
       ),
