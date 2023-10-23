@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,12 +22,7 @@ class HomeScreen extends StatelessWidget {
             child: Container(
               color: Colors.blue,
               child: Center(
-                child: Image.network(
-                  'https://example.com/your_image_url.jpg', // Replace with your image URL
-                  width: 200.0, // Adjust the width as needed
-                  height: 200.0, // Adjust the height as needed
-                  fit: BoxFit.contain, // Adjust the fit as needed
-                ),
+                child: Text("tst")
               ),
             ),
           ),
@@ -51,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () async {
                       final picker = ImagePicker();
-                      
+
                       final pickedFile =
                           await picker.pickImage(source: ImageSource.gallery);
 
