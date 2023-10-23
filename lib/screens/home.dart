@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -8,6 +10,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? imagePath; // Store the path of the selected image
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,13 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: <Widget>[
-          // Top Section: Load Food Illustration from the Web
+          // Top Section: Load Food Illustration from the Web or Display Selected Image
           Expanded(
             flex: 2,
             child: Container(
               color: Colors.blue,
               child: Center(
-                child: Text("tst")
+                child: imagePath != null
+                    ? Image.file(File(imagePath!!)) // Show the selected image
+                    : Text("Top Section"),
               ),
             ),
           ),
@@ -40,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           await picker.pickImage(source: ImageSource.camera);
 
                       if (pickedFile != null) {
-                        // A photo was taken, you can use the pickedFile.path to access the image file
-                        print('Image path: ${pickedFile.path}');
+                        setState(() {
+                          imagePath = pickedFile.path;
+                        });
                       } else {
-                        // User canceled or didn't take a photo
                         print('No image selected.');
                       }
                     },
@@ -57,10 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           await picker.pickImage(source: ImageSource.gallery);
 
                       if (pickedFile != null) {
-                        // An image was selected from the gallery, you can use the pickedFile.path to access the image file
-                        print('Image path: ${pickedFile.path}');
+                        setState(() {
+                          imagePath = pickedFile.path;
+                        });
                       } else {
-                        // User canceled the gallery picker
                         print('No image selected.');
                       }
                     },
